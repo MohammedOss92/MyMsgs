@@ -60,6 +60,7 @@ dependencies {
 
 
     implementation 'com.google.android.gms:play-services-ads:22.0.0'
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
 
 
     testImplementation 'junit:junit:4.13.2'
