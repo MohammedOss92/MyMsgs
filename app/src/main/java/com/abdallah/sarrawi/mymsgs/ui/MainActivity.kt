@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -28,6 +27,7 @@ import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -81,7 +81,17 @@ class MainActivity : AppCompatActivity() {
             )
 
 
-        loadInterstitialAd()
+    FirebaseMessaging.getInstance().subscribeToTopic("alert")
+    FirebaseMessaging.getInstance().token
+        .addOnSuccessListener { token ->
+            // قم بتنفيذ العمليات المطلوبة هنا على الـ token
+
+        }
+        .addOnFailureListener { exception ->
+            // قم بتنفيذ العمليات المطلوبة هنا في حالة فشل العملية
+        }
+
+    loadInterstitialAd()
 
 
 
