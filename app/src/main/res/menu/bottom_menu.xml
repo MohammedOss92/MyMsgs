@@ -12,5 +12,10 @@
         android:icon="@drawable/ic_favorite"
         android:title="المفصلة" />
 
+    <item
+        android:id="@+id/newMsgsFragment"
+        android:icon="@drawable/new_msg"
+        android:title="جديده"/>
+
 
 </menu>

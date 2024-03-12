@@ -37,7 +37,7 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
     inner class MyViewHolder(val binding: MsgsDesignBinding) : RecyclerView.ViewHolder(binding.root) {
         var adView: AdView ?=null
         init {
-            Log.e("tessst",msgsModel[0].msgModel!!.is_fav.toString())
+//            Log.e("tessst",msgsModel[0].msgModel!!.is_fav.toString())
 //            binding.favBtn.setOnClickListener {
 //
 //                onItemClick?.invoke(msgsModel[adapterPosition],adapterPosition)
@@ -71,6 +71,26 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
                 }
             }
 
+//            binding.apply {
+//                tvMsgM.text = current_msgsModel.msgModel?.MessageName
+//                newMsgM.setImageResource(R.drawable.new_msg)
+//
+//                // التحقق من قيمة new_msgs
+//                if (current_msgsModel.msgModel?.new_msgs == 0) {
+//                    newMsgM.setVisibility(View.INVISIBLE)
+//                } else {
+//                    newMsgM.setVisibility(View.VISIBLE)
+//                }
+//
+//                // التحقق من قيمة is_fav
+//                current_msgsModel.msgModel?.is_fav?.let { isFav ->
+//                    if (isFav) {
+//                        favBtn.setImageResource(R.drawable.baseline_favorite_true)
+//                    } else {
+//                        favBtn.setImageResource(R.drawable.baseline_favorite_border_false)
+//                    }
+//                }
+//            }
             binding.favBtn.setOnClickListener {
 
                 onItemClick?.invoke(msgsModel[position], position)

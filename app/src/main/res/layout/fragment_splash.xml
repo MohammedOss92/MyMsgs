@@ -22,7 +22,6 @@
         android:id="@+id/mmm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="مـسـجـاتـي \n 2023"
         android:textSize="25sp"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/imageView"

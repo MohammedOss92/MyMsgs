@@ -68,4 +68,9 @@
 <!--            android:name="aa"-->
 <!--            app:argType="string" />-->
     </fragment>
+    <fragment
+        android:id="@+id/newMsgsFragment"
+        android:name="com.abdallah.sarrawi.mymsgs.ui.fragments.NewMsgsFragment"
+        android:label="fragment_new_msgs"
+        tools:layout="@layout/fragment_new_msgs" />
 </navigation>

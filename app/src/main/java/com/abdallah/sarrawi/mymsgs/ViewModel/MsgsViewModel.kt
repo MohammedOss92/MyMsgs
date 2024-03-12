@@ -33,6 +33,8 @@ class MsgsViewModel constructor(private val msgsRepo:MsgsRepo):ViewModel() {
 
     private val _responseWithTitle= MutableLiveData<List<MsgModelWithTitle>>()
 
+    private val _responseWithTitlea= MutableLiveData<List<MsgModelWithTitle>>()
+
     suspend fun getAllMsgs(ID_Type_id:Int) :MutableLiveData<List<MsgsModel>> {
 
         msgsRepo.getMsgs_Ser(ID_Type_id).let { response ->
@@ -79,6 +81,13 @@ class MsgsViewModel constructor(private val msgsRepo:MsgsRepo):ViewModel() {
     // update msg_table items favorite state
     fun update_fav(id: Int,state:Boolean) = viewModelScope.launch {
         msgsRepo.update_fav(id,state)
+    }
+
+    suspend fun getAllNewMsg(): MutableLiveData<List<MsgModelWithTitle>> {
+        Log.e("tessst","entred22")
+        val response =msgsRepo.getAllNewMsg()
+        _responseWithTitle.postValue(response)
+        return _responseWithTitle
     }
 
     fun getFav(): MutableLiveData<List<FavoriteModel>> {

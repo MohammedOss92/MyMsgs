@@ -12,6 +12,9 @@ class MsgsRepo constructor(val apiService: ApiService, private val localeSource:
     suspend fun getMsgs_Dao(id: Int) = localeSource.getMsgs_Dao(id)
 
     suspend fun getMsgWithTitle(id: Int) = localeSource.getMsgsWithTitle(id)
+
+    suspend fun getAllNewMsg() = localeSource.getAllNewMsg()
+
     suspend fun insert_msgs(msgs: List<MsgsModel>?) {
         if (!msgs.isNullOrEmpty()) {
             localeSource.insert_msgs(msgs)

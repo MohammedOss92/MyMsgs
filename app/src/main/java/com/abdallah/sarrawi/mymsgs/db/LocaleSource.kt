@@ -2,6 +2,7 @@ package com.abdallah.sarrawi.mymsgs.db
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.abdallah.sarrawi.mymsgs.db.Dao.FavoriteDao
 import com.abdallah.sarrawi.mymsgs.db.Dao.MsgsDao
 import com.abdallah.sarrawi.mymsgs.db.Dao.MsgsTypesDao
@@ -48,6 +49,11 @@ class LocaleSource(context: Context) {
     suspend fun getMsgsWithTitle(id: Int): List<MsgModelWithTitle>{
         return Msgs_Dao?.getAllMsgsDaoWithTitle(id)!!
     }
+
+    suspend fun getAllNewMsg(): List<MsgModelWithTitle>{
+        return Msgs_Dao?.getAllNewMsg()!!
+    }
+
 
     suspend fun insertPosts(posts: List<MsgsTypesModel>) {
         TypesDao?.insertPosts(posts)!!

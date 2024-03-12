@@ -1,7 +1,6 @@
 package com.abdallah.sarrawi.mymsgs.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
@@ -17,9 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abdallah.sarrawi.mymsgs.R
 import com.abdallah.sarrawi.mymsgs.ViewModel.MsgsViewModel
 import com.abdallah.sarrawi.mymsgs.ViewModel.ViewModelFactory
-import com.abdallah.sarrawi.mymsgs.adapter.Msgs_Adapter
 import com.abdallah.sarrawi.mymsgs.adapter.CallBack
+import com.abdallah.sarrawi.mymsgs.adapter.Msgs_Adapter
 import com.abdallah.sarrawi.mymsgs.api.ApiService
+import com.abdallah.sarrawi.mymsgs.databinding.FragmentNewMsgsBinding
 import com.abdallah.sarrawi.mymsgs.databinding.FragmentSecondBinding
 import com.abdallah.sarrawi.mymsgs.db.LocaleSource
 import com.abdallah.sarrawi.mymsgs.models.FavoriteModel
@@ -29,14 +29,10 @@ import com.abdallah.sarrawi.mymsgs.ui.MainActivity
 import kotlinx.coroutines.launch
 
 
-class SecondFragment : Fragment() , CallBack {
-
-    private lateinit var _binding : FragmentSecondBinding
+class NewMsgsFragment : Fragment(), CallBack {
+    private lateinit var _binding : FragmentNewMsgsBinding
     private val binding get() = _binding
-    private var argsId = -1
-    private var MsgTypes_name = ""
 
-//    lateinit var  msgsAdapter :Msgs_Adapter
     private val msgsAdapter by lazy { Msgs_Adapter(requireContext(),this) }
     private val retrofitService = ApiService.provideRetrofitInstance()
 
@@ -48,36 +44,47 @@ class SecondFragment : Fragment() , CallBack {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        argsId = SecondFragmentArgs.fromBundle(requireArguments()).id
-//        MsgTypes_name = SecondFragmentArgs.fromBundle(requireArguments()).msgType
         (activity as MainActivity).fragment = 2
-//        msgsAdapter = Msgs_Adapter(requireContext(),this /*,this*/ )
-        // (activity as MainActivity).id = argsId
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        // Inflate the layout for this fragment
+        _binding = FragmentNewMsgsBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Toast.makeText(requireContext(), argsId.toString(), Toast.LENGTH_LONG).show()
-        //Toast.makeText(requireContext(), MsgTypes_name, Toast.LENGTH_LONG).show()
-
-
-
         setUpRv()
         adapterOnClick()
         menu_item()
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+
+    private fun setUpRv() = viewModel.viewModelScope.launch {
+
+
+
+        viewModel.getAllNewMsg().observe(requireActivity()) { listTvShows ->
+            //     Log.e("tessst",listTvShows.size.toString()+"  adapter")
+            msgsAdapter.stateRestorationPolicy= RecyclerView.Adapter.StateRestorationPolicy.ALLOW
+
+            if(binding.rcMsgsNew.adapter == null){
+                msgsAdapter.msgsModel = listTvShows
+                binding.rcMsgsNew.layoutManager = LinearLayoutManager(requireContext())
+                binding.rcMsgsNew.adapter = msgsAdapter
+                msgsAdapter.notifyDataSetChanged()
+            }else{
+                msgsAdapter.notifyDataSetChanged()
+            }
+
+
+        }
 
     }
 
@@ -106,58 +113,6 @@ class SecondFragment : Fragment() , CallBack {
 //        msgsAdapter.onClick={popupMenus(requireView())}
 
     }
-    private  fun setUpRv() = viewModel.viewModelScope.launch {
-
-//        binding.rcMsgTypes.apply {
-//            adapter = msgstypesAdapter
-//            setHasFixedSize(true)
-//        }
-
-
-        viewModel.getMsgsFromRoom_by_id(argsId,requireContext()).observe(viewLifecycleOwner) { listShows ->
-            //  msgsAdapter.stateRestorationPolicy=RecyclerView.Adapter.StateRestorationPolicy.ALLOW
-            msgsAdapter.stateRestorationPolicy= RecyclerView.Adapter.StateRestorationPolicy.ALLOW
-//            msgsAdapter.msgsModel = listShows
-//            binding.rcMsgs.adapter = msgsAdapter
-            msgsAdapter.msgsModel = listShows
-            if(binding.rcMsgs.adapter == null){
-                binding.rcMsgs.layoutManager = LinearLayoutManager(requireContext())
-                binding.rcMsgs.adapter = msgsAdapter
-                msgsAdapter.notifyDataSetChanged()
-            }else{
-                msgsAdapter.notifyDataSetChanged()
-            }
-            Log.e("tessst","enter111")
-
-        }
-    }
-
-
-
-//    private  fun setUpRv() = viewModel.viewModelScope.launch {
-//
-////        binding.rcMsgTypes.apply {
-////            adapter = msgstypesAdapter
-////            setHasFixedSize(true)
-////        }
-//
-//
-//        viewModel.getMsgsFromRoom_by_id(argsId,requireContext()).observe(viewLifecycleOwner) { listShows ->
-//            //  msgsAdapter.stateRestorationPolicy=RecyclerView.Adapter.StateRestorationPolicy.ALLOW
-//            msgsAdapter.stateRestorationPolicy= RecyclerView.Adapter.StateRestorationPolicy.ALLOW
-////            msgsAdapter.msgsModel = listShows
-////            binding.rcMsgs.adapter = msgsAdapter
-//            msgsAdapter.notifyDataSetChanged()
-//            if(binding.rcMsgs.adapter == null){
-//                msgsAdapter.msgsModel = listShows
-//                binding.rcMsgs.layoutManager = LinearLayoutManager(requireContext())
-//                binding.rcMsgs.adapter = msgsAdapter
-//                msgsAdapter.notifyDataSetChanged()
-//            }
-//            Log.e("tessst","enter111")
-//
-//        }
-//    }
 
     private fun menu_item() {
         // The usage of an interface lets you inject your own implementation
@@ -175,7 +130,7 @@ class SecondFragment : Fragment() , CallBack {
 
                     R.id.action_zakrafah ->{
                         val dir = SecondFragmentDirections.actionSecondFragmentToEditFragment("")
-                        NavHostFragment.findNavController(this@SecondFragment).navigate(dir)
+                        NavHostFragment.findNavController(this@NewMsgsFragment).navigate(dir)
                     }
 
 

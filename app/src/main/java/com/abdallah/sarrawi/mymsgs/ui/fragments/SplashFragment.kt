@@ -14,6 +14,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.abdallah.sarrawi.mymsgs.R
 import com.abdallah.sarrawi.mymsgs.databinding.FragmentSplashBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class SplashFragment : Fragment() {
@@ -38,6 +40,16 @@ class SplashFragment : Fragment() {
 
         val tvSplash:TextView =view.findViewById(R.id.mmm)
         val imgSplash:ImageView =view.findViewById(R.id.imageView)
+        val currentDate = Calendar.getInstance().time
+
+        // قم بتحديد تنسيق السنة
+        val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault())
+
+        // احصل على السنة من التاريخ الحالي
+        val currentYear = yearFormat.format(currentDate)
+
+        // قم بعرض السنة في TextView
+        tvSplash.text = "مـسـجـاتـي \n$currentYear"
 //        val slideAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.anim)
 
 //        tvSplash.animate().translationXBy(-1000f).duration=3000

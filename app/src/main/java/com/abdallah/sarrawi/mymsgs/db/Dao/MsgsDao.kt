@@ -23,12 +23,13 @@ interface MsgsDao {
     @Query("select e.*, c.MsgTypes as typeTitle from  msg_table e left join msg_types_table c  on  c.id = e.ID_Type_id where e.ID_Type_id=:ID_Type_id order by id DESC")
     suspend fun getAllMsgsDaoWithTitle(ID_Type_id: Int): List<MsgModelWithTitle>
 
-//    @Query(" select m.*,t.TypeDescription from msg_table m" +
-//            " Left Join msg_types_table t on" +
-//            " m.TypeDescription = t.TypeID " +
-//            "where TypeDescription" +
-//            "=:TypeDescription")
-//    suspend fun getAllMsgsDa(TypeDescription: Int): List<MsgsModel>
+    @Query("SELECT e.*, c.MsgTypes AS typeTitle " +
+            "FROM msg_table e " +
+            "LEFT JOIN msg_types_table c ON c.id = e.ID_Type_id " +
+            "WHERE e.new_msgs = 1 " +
+            "ORDER BY e.id DESC")
+    suspend fun getAllNewMsg(): List<MsgModelWithTitle>
+
 
     @Query("delete from msg_table")
     fun deleteAllmessage()
