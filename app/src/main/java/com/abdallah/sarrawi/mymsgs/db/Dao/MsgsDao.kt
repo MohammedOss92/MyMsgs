@@ -28,7 +28,7 @@ interface MsgsDao {
             "LEFT JOIN msg_types_table c ON c.id = e.ID_Type_id " +
             "WHERE e.new_msgs = 1 " +
             "ORDER BY e.id DESC")
-    suspend fun getAllNewMsg(): List<MsgModelWithTitle>
+    fun getAllNewMsg(): LiveData<List<MsgModelWithTitle>>
 
 
     @Query("delete from msg_table")

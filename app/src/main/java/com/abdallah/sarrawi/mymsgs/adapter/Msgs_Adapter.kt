@@ -37,12 +37,6 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
     inner class MyViewHolder(val binding: MsgsDesignBinding) : RecyclerView.ViewHolder(binding.root) {
         var adView: AdView ?=null
         init {
-//            Log.e("tessst",msgsModel[0].msgModel!!.is_fav.toString())
-//            binding.favBtn.setOnClickListener {
-//
-//                onItemClick?.invoke(msgsModel[adapterPosition],adapterPosition)
-//
-//            }
 
 
 
@@ -94,7 +88,7 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
             binding.favBtn.setOnClickListener {
 
                 onItemClick?.invoke(msgsModel[position], position)
-
+                notifyItemChanged(adapterPosition)
             }
         }
 

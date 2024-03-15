@@ -1,5 +1,6 @@
 package com.abdallah.sarrawi.mymsgs.ui.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import android.widget.PopupMenu
@@ -65,53 +66,84 @@ class NewMsgsFragment : Fragment(), CallBack {
 
     }
 
+//    private fun adapterOnClick(){
+//
+//        msgsAdapter.onItemClick = { it: MsgModelWithTitle, i: Int ->
+//            val fav= FavoriteModel(it.msgModel!!.id,it.msgModel!!.MessageName,it.typeTitle,it.msgModel!!.new_msgs,it.msgModel!!.ID_Type_id)
+//            // check if item is favorite or not
+//            if (it.msgModel!!.is_fav){
+//                viewModel.update_fav(it.msgModel!!.id,false) // update favorite item state
+//                viewModel.delete_fav(fav) //delete item from db
+//                Toast.makeText(requireContext(),"تم الحذف من المفضلة",Toast.LENGTH_SHORT).show()
+//                setUpRv()
+//                msgsAdapter.notifyDataSetChanged()
+//
+//            }else{
+//                viewModel.update_fav(it.msgModel!!.id,true)
+//                viewModel.add_fav(fav) // add item to db
+//                Toast.makeText(requireContext(),"تم الاضافة الى المفضلة",Toast.LENGTH_SHORT).show()
+//                setUpRv()
+//                msgsAdapter.notifyDataSetChanged()
+//            }
+//
+//        }
+//
+////        msgsAdapter.onClick={popupMenus(requireView())}
+//
+//    }
+//
+//
+//    private fun setUpRv() = viewModel.viewModelScope.launch {
+//
+//
+//
+//        viewModel.getAllNewMsg().observe(requireActivity()) { listTvShows ->
+//            //     Log.e("tessst",listTvShows.size.toString()+"  adapter")
+//            msgsAdapter.stateRestorationPolicy= RecyclerView.Adapter.StateRestorationPolicy.ALLOW
+//
+//            if(binding.rcMsgsNew.adapter == null){
+//                msgsAdapter.msgsModel = listTvShows
+//                binding.rcMsgsNew.layoutManager = LinearLayoutManager(requireContext())
+//                binding.rcMsgsNew.adapter = msgsAdapter
+//                msgsAdapter.notifyDataSetChanged()
+//            }else{
+//                msgsAdapter.notifyDataSetChanged()
+//            }
+//
+//
+//        }
+//
+//    }
+//
+//
 
-    private fun setUpRv() = viewModel.viewModelScope.launch {
-
-
-
-        viewModel.getAllNewMsg().observe(requireActivity()) { listTvShows ->
-            //     Log.e("tessst",listTvShows.size.toString()+"  adapter")
-            msgsAdapter.stateRestorationPolicy= RecyclerView.Adapter.StateRestorationPolicy.ALLOW
-
-            if(binding.rcMsgsNew.adapter == null){
-                msgsAdapter.msgsModel = listTvShows
-                binding.rcMsgsNew.layoutManager = LinearLayoutManager(requireContext())
-                binding.rcMsgsNew.adapter = msgsAdapter
-                msgsAdapter.notifyDataSetChanged()
-            }else{
-                msgsAdapter.notifyDataSetChanged()
+    private fun adapterOnClick() {
+        msgsAdapter.onItemClick = { it: MsgModelWithTitle, i: Int ->
+            val fav = FavoriteModel(it.msgModel!!.id, it.msgModel!!.MessageName, it.typeTitle, it.msgModel!!.new_msgs, it.msgModel!!.ID_Type_id)
+            // check if item is favorite or not
+            if (it.msgModel!!.is_fav) {
+                viewModel.update_fav(it.msgModel!!.id, false) // update favorite item state
+                viewModel.delete_fav(fav) //delete item from db
+                Toast.makeText(requireContext(), "تم الحذف من المفضلة", Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.update_fav(it.msgModel!!.id, true)
+                viewModel.add_fav(fav) // add item to db
+                Toast.makeText(requireContext(), "تم الاضافة الى المفضلة", Toast.LENGTH_SHORT).show()
             }
-
-
         }
-
     }
 
-    private fun adapterOnClick(){
-
-        msgsAdapter.onItemClick = { it: MsgModelWithTitle, i: Int ->
-            val fav= FavoriteModel(it.msgModel!!.id,it.msgModel!!.MessageName,it.typeTitle,it.msgModel!!.new_msgs,it.msgModel!!.ID_Type_id)
-            // check if item is favorite or not
-            if (it.msgModel!!.is_fav){
-                viewModel.update_fav(it.msgModel!!.id,false) // update favorite item state
-                viewModel.delete_fav(fav) //delete item from db
-                Toast.makeText(requireContext(),"تم الحذف من المفضلة",Toast.LENGTH_SHORT).show()
-                setUpRv()
-                msgsAdapter.notifyDataSetChanged()
-
-            }else{
-                viewModel.update_fav(it.msgModel!!.id,true)
-                viewModel.add_fav(fav) // add item to db
-                Toast.makeText(requireContext(),"تم الاضافة الى المفضلة",Toast.LENGTH_SHORT).show()
-                setUpRv()
-                msgsAdapter.notifyDataSetChanged()
-            }
-
+    private fun setUpRv() {
+        viewModel.getAllNewMsg().observe(viewLifecycleOwner) { listTvShows ->
+            // تحديث القائمة بعد تغيير حالة العنصر المفضل
+            msgsAdapter.msgsModel = listTvShows
+            msgsAdapter.notifyDataSetChanged()
         }
 
-//        msgsAdapter.onClick={popupMenus(requireView())}
-
+        binding.rcMsgsNew.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = msgsAdapter
+        }
     }
 
     private fun menu_item() {

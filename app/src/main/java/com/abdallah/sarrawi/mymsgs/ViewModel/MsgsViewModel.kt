@@ -6,10 +6,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.abdallah.sarrawi.mymsgs.api.ApiService
 import com.abdallah.sarrawi.mymsgs.models.FavoriteModel
 import com.abdallah.sarrawi.mymsgs.models.MsgModelWithTitle
@@ -52,7 +49,7 @@ class MsgsViewModel constructor(private val msgsRepo:MsgsRepo):ViewModel() {
         return _response
     }
 
-    fun getMsgsFromRoom_by_id(ID_Type_id:Int,context: Context) :MutableLiveData<List<MsgModelWithTitle>>{
+    suspend fun getMsgsFromRoom_by_id(ID_Type_id:Int,context: Context) :MutableLiveData<List<MsgModelWithTitle>>{
         viewModelScope.launch {
             val response = msgsRepo.getMsgWithTitle(ID_Type_id)
             withContext(Dispatchers.Main) {
@@ -73,6 +70,8 @@ class MsgsViewModel constructor(private val msgsRepo:MsgsRepo):ViewModel() {
         return _responseWithTitle
     }
 
+
+
     /****************/
      fun add_fav(fav: FavoriteModel)= viewModelScope.launch {
         msgsRepo.add_fav(fav)
@@ -83,19 +82,18 @@ class MsgsViewModel constructor(private val msgsRepo:MsgsRepo):ViewModel() {
         msgsRepo.update_fav(id,state)
     }
 
-    suspend fun getAllNewMsg(): MutableLiveData<List<MsgModelWithTitle>> {
+    fun getAllNewMsg(): LiveData<List<MsgModelWithTitle>> {
         Log.e("tessst","entred22")
-        val response =msgsRepo.getAllNewMsg()
-        _responseWithTitle.postValue(response)
-        return _responseWithTitle
+        return msgsRepo.getAllNewMsg()
+
     }
 
-    fun getFav(): MutableLiveData<List<FavoriteModel>> {
+    fun getFav(): LiveData<List<FavoriteModel>> {
         Log.e("tessst","entred22")
-        viewModelScope.launch {
-          __response.postValue(msgsRepo.getAllFav())
-        }
-        return __response
+//        viewModelScope.launch {
+//          __response.postValue(msgsRepo.getAllFav())
+//        }
+        return msgsRepo.getAllFav()
     }
 
     // delete favorite item from db

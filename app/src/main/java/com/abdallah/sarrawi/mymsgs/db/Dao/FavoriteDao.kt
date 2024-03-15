@@ -1,5 +1,6 @@
 package com.abdallah.sarrawi.mymsgs.db.Dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.abdallah.sarrawi.mymsgs.models.FavoriteModel
 import com.abdallah.sarrawi.mymsgs.models.MsgsModel
@@ -15,7 +16,7 @@ interface FavoriteDao {
             "e left join msg_types_table c  on " +
             " c.id = e.ID_Type_id where " +
             "e.ID_Type_id order by c.id DESC")
-    suspend fun getAllFav(): List<FavoriteModel>
+    fun getAllFav(): LiveData<List<FavoriteModel>>
 
     // delete favorite item from db
     @Delete

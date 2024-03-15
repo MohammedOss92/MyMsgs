@@ -73,4 +73,13 @@
         android:name="com.abdallah.sarrawi.mymsgs.ui.fragments.NewMsgsFragment"
         android:label="fragment_new_msgs"
         tools:layout="@layout/fragment_new_msgs" />
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.abdallah.sarrawi.mymsgs.ui.fragments.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" >
+        <action
+            android:id="@+id/action_blankFragment_to_newMsgsFragment"
+            app:destination="@id/newMsgsFragment" />
+    </fragment>
 </navigation>

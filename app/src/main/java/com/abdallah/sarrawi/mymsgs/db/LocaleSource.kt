@@ -50,7 +50,7 @@ class LocaleSource(context: Context) {
         return Msgs_Dao?.getAllMsgsDaoWithTitle(id)!!
     }
 
-    suspend fun getAllNewMsg(): List<MsgModelWithTitle>{
+    fun getAllNewMsg(): LiveData<List<MsgModelWithTitle>>{
         return Msgs_Dao?.getAllNewMsg()!!
     }
 
@@ -72,7 +72,7 @@ class LocaleSource(context: Context) {
         FavoriteDao?.add_fav(fav)
     }
 
-    suspend fun getAllFav(): List<FavoriteModel>{
+    fun getAllFav(): LiveData<List<FavoriteModel>>{
         Log.e("tessst","entred666")
         return FavoriteDao?.getAllFav()!!
     }

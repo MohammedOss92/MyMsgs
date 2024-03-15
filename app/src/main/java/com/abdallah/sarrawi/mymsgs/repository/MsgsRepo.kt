@@ -13,7 +13,7 @@ class MsgsRepo constructor(val apiService: ApiService, private val localeSource:
 
     suspend fun getMsgWithTitle(id: Int) = localeSource.getMsgsWithTitle(id)
 
-    suspend fun getAllNewMsg() = localeSource.getAllNewMsg()
+    fun getAllNewMsg() = localeSource.getAllNewMsg()
 
     suspend fun insert_msgs(msgs: List<MsgsModel>?) {
         if (!msgs.isNullOrEmpty()) {
@@ -32,7 +32,7 @@ class MsgsRepo constructor(val apiService: ApiService, private val localeSource:
         localeSource.add_fav(fav)
     }
 
-    suspend fun getAllFav() = localeSource.getAllFav()
+    fun getAllFav() = localeSource.getAllFav()
 
     // delete favorite item from db
     suspend fun deleteFav(fav: FavoriteModel) {
