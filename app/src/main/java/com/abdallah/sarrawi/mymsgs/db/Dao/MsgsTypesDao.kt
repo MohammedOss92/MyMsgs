@@ -38,8 +38,19 @@ interface MsgsTypesDao {
     @Query("DELETE FROM msg_types_table")
     fun deleteALlPosts()
 
+//    @Query(
+//        "select c.*, count(e.ID_Type_id) as subCount from msg_types_table c left join msg_table e on  c.id = e.ID_Type_id group by c.id"
+//    )
+//    suspend fun getAllMsgTypesWithCounts(): List<MsgsTypeWithCount>?
+
     @Query(
-        "select c.*, count(e.ID_Type_id) as subCount from msg_types_table c left join msg_table e on  c.id = e.ID_Type_id group by c.id"
+        "SELECT c.*, " +
+                "COUNT(e.ID_Type_id) AS subCount, " +
+                "SUM(CASE WHEN e.new_msgs = 1 THEN 1 ELSE 0 END) AS newMsgsCount " +
+                "FROM msg_types_table c " +
+                "LEFT JOIN msg_table e ON c.id = e.ID_Type_id " +
+                "GROUP BY c.id"
     )
     suspend fun getAllMsgTypesWithCounts(): List<MsgsTypeWithCount>?
+
 }

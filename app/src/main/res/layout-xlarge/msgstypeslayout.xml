@@ -7,81 +7,137 @@
 <!--        android:paddingLeft="15dp"-->
 <!--        android:paddingRight="15dp"-->
 <!--        android:descendantFocusability="beforeDescendants">-->
-    <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
 
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="5dp"
+    android:layout_marginBottom="1dp"
+
+    app:cardMaxElevation="5dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
+    android:id="@+id/card"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        app:cardCornerRadius="20dp"
-        android:layout_margin="5dp"
-        android:layout_marginBottom="1dp"
-
-        app:cardMaxElevation="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        android:id="@+id/card"
+        android:layout_height="match_parent"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="15dp"
         >
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:paddingRight="15dp"
-            >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/tvTitle"
+            android:gravity="center"
+            android:textSize="25sp" />
+
+        <!--            <View-->
+        <!--                android:id="@+id/view1"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="1dp"-->
+        <!--                android:background="@drawable/shape" />-->
+        <!--            <RelativeLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:paddingLeft="15dp"-->
+        <!--                android:paddingTop="15dp"-->
+        <!--                android:paddingBottom="15dp"-->
+        <!--                android:paddingRight="15dp">-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/tvCounter"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:textAppearance="?android:attr/textAppearanceSmall"-->
+        <!--                    android:text="Small Text"-->
+        <!--                    android:gravity="right"-->
+        <!--                    android:textSize="25sp"-->
+        <!--                    android:layout_alignBottom="@+id/new_Msg"-->
+        <!--                    android:layout_alignParentRight="true"-->
+        <!--                    android:layout_alignParentEnd="true" />-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/tvnew"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:textAppearance="?android:attr/textAppearanceSmall"-->
+        <!--                    android:text="Small Text"-->
+        <!--                    android:gravity="right"-->
+        <!--                    android:textSize="25sp"-->
+        <!--                    android:layout_alignBottom="@+id/new_Msg"-->
+        <!--                    android:layout_alignParentRight="true"-->
+        <!--                    android:layout_alignParentEnd="true" />-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/new_Msg"-->
+        <!--                    android:layout_width="30dp"-->
+        <!--                    android:layout_height="28dp"-->
+        <!--                    android:src="@mipmap/new_msg"-->
+        <!--                    android:layout_gravity="right"-->
+        <!--                    android:visibility="gone" />-->
+
+        <!--            </RelativeLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:orientation="horizontal">
+
+<!--            <ImageView-->
+<!--                android:id="@+id/new_Msg"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="28dp"-->
+<!--                android:src="@mipmap/new_msg"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:visibility="gone" />-->
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/tvnew"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/tvTitle"
-                android:gravity="center"
-                android:textSize="25sp" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:background="@drawable/background_circle_red"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_gravity="center_vertical" />
 
-<!--            <View-->
-<!--                android:id="@+id/view1"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="1dp"-->
-<!--                android:background="@drawable/shape" />-->
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <Space
+                android:id="@+id/ss"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content" /> <!-- تغيير العرض حسب الحاجة -->
+
+            <TextView
+                android:id="@+id/tvCounter"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingRight="15dp">
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:gravity="right"
+                android:textSize="25sp"
+                android:layout_gravity="center_vertical" />
 
-                <TextView
-                    android:id="@+id/tvCounter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
-                    android:gravity="right"
-                    android:textSize="25sp"
-                    android:layout_alignBottom="@+id/new_Msg"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
-
-                <ImageView
-                    android:id="@+id/new_Msg"
-                    android:layout_width="30dp"
-                    android:layout_height="28dp"
-                    android:src="@mipmap/new_msg"
-                    android:layout_gravity="right"
-                    android:visibility="gone" />
-
-            </RelativeLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
-<!--    </FrameLayout>-->
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+    <!--    </FrameLayout>-->
 
     <!--<?xml version="1.0" encoding="utf-8"?>-->
     <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->

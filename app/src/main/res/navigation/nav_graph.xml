@@ -82,4 +82,9 @@
             android:id="@+id/action_blankFragment_to_newMsgsFragment"
             app:destination="@id/newMsgsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.abdallah.sarrawi.mymsgs.ui.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

@@ -17,5 +17,10 @@
         android:icon="@drawable/new_msg"
         android:title="جديده"/>
 
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_action_set"
+        android:title="الاعدادات"/>
+
 
 </menu>
