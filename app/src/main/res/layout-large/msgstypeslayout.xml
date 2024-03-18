@@ -111,7 +111,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Small Text"
                     android:textColor="#FFFFFF"
-                    android:textSize="25sp"
+                    android:textSize="13sp"
                     android:background="@drawable/background_circle_red"
                     android:gravity="center"
                     android:padding="5dp"

@@ -1,4 +1,4 @@
-package com.abdallah.sarrawi.mymsgs.ui.fragments
+package com.abdallah.sarrawi.mymsgs.ui.prfernces
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

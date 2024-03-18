@@ -73,18 +73,15 @@
         android:name="com.abdallah.sarrawi.mymsgs.ui.fragments.NewMsgsFragment"
         android:label="fragment_new_msgs"
         tools:layout="@layout/fragment_new_msgs" />
+
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.abdallah.sarrawi.mymsgs.ui.prfernces.SettingsActivity"
+        android:label="SettingsActivity"
+        tools:layout="@layout/settings_activity"/>
     <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.abdallah.sarrawi.mymsgs.ui.fragments.BlankFragment"
-        android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" >
-        <action
-            android:id="@+id/action_blankFragment_to_newMsgsFragment"
-            app:destination="@id/newMsgsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.abdallah.sarrawi.mymsgs.ui.fragments.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:id="@+id/settingsFrag"
+        android:name="com.abdallah.sarrawi.mymsgs.ui.prfernces.SettingsFrag"
+        android:label="SettingsFrag"
+        tools:layout=""/>
 </navigation>

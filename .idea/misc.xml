@@ -13,6 +13,7 @@
         <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs/app/src/main/res/layout/fragment_new_msgs.xml" value="0.22780797101449277" />
         <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs/app/src/main/res/menu/bottom_menu.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs/app/src/main/res/menu/menu_main.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs1/app/src/main/res/drawable-anydpi/ic_action_set.xml" value="0.1405" />
         <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs1/app/src/main/res/drawable/background_circle_red.xml" value="0.1" />
         <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs1/app/src/main/res/layout-large/activity_main.xml" value="0.26375" />
         <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs1/app/src/main/res/layout-large/msgs_design.xml" value="0.4990079365079365" />
@@ -27,7 +28,9 @@
         <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs1/app/src/main/res/layout/fragment_settings.xml" value="0.22780797101449277" />
         <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs1/app/src/main/res/layout/msgs_design.xml" value="0.5261506276150628" />
         <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs1/app/src/main/res/layout/msgstypeslayout.xml" value="0.5261506276150628" />
+        <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs1/app/src/main/res/layout/settings_activity.xml" value="0.22780797101449277" />
         <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs1/app/src/main/res/menu/bottom_menu.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/Abdallah/AndroidStudioProjects/MyMsgs1/app/src/main/res/xml/root_preferences.xml" value="0.22780797101449277" />
       </map>
     </option>
   </component>
