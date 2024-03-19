@@ -124,12 +124,10 @@ class FirstFragment : Fragment() {
        //     Log.e("tessst",listTvShows.size.toString()+"  adapter")
             msgstypesAdapter.stateRestorationPolicy= RecyclerView.Adapter.StateRestorationPolicy.ALLOW
             msgstypesAdapter.msgsTypesModel = listTvShows
-            msgstypesAdapter.notifyDataSetChanged()
             if(binding.rcMsgTypes.adapter == null){
                 msgstypesAdapter.msgsTypesModel = listTvShows
                 binding.rcMsgTypes.layoutManager = LinearLayoutManager(requireContext())
                 binding.rcMsgTypes.adapter = msgstypesAdapter
-                msgstypesAdapter.notifyDataSetChanged()
             }
 
 
