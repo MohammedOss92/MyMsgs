@@ -18,7 +18,7 @@
         android:title="جديده"/>
 
     <item
-        android:id="@+id/settingsActivity"
+        android:id="@+id/settingsFrag"
         android:icon="@drawable/ic_action_set"
         android:title="الاعدادات"/>
 

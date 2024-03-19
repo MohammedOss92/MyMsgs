@@ -1,18 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.prfernces.SettingsFragment">
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_setting"
+    <!-- عنوان الشاشة -->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"
-        />
+        android:layout_height="wrap_content"
+        android:text="تفاعل"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/title_text_color"
+        android:padding="8dp"
+        android:gravity="right"/>
+
+    <!-- TextView لعرض الخيارات -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="قيم التطبيق"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:padding="8dp"
+        android:drawableEnd="@drawable/ic_star"
+        android:drawablePadding="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="إدعمنا بنشر التطبيق مع اصدقائك"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:padding="8dp"
+        android:drawableEnd="@drawable/ic_group"
+        android:drawablePadding="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    android:background="@drawable/shape_ic" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="معلومات التطبيق"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/title_text_color"
+        android:padding="8dp"
+        android:gravity="right"/>
+
+    <!-- TextView لعرض الخيارات -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="إصدار التطبيق"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:padding="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="سياسة الخصوصية."
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:padding="8dp" />
 
 
-</FrameLayout>
+    <!-- يمكنك إضافة المزيد من الـ TextView حسب الحاجة -->
+
+</LinearLayout>

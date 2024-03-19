@@ -2,19 +2,19 @@
 
     <PreferenceCategory app:title="@string/messages_header">
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+
 
         <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
             app:key="reply"
             app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
+            app:defaultValue="reply" />
 
+        <ListPreference
+            app:key="hhhreply"
+            app:title="@string/reply_title"
+            >
+
+        </ListPreference>
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/sync_header">

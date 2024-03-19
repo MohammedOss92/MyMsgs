@@ -74,14 +74,10 @@
         android:label="fragment_new_msgs"
         tools:layout="@layout/fragment_new_msgs" />
 
-    <activity
-        android:id="@+id/settingsActivity"
-        android:name="com.abdallah.sarrawi.mymsgs.ui.prfernces.SettingsActivity"
-        android:label="SettingsActivity"
-        tools:layout="@layout/settings_activity"/>
+
     <fragment
         android:id="@+id/settingsFrag"
-        android:name="com.abdallah.sarrawi.mymsgs.ui.prfernces.SettingsFrag"
+        android:name="com.abdallah.sarrawi.mymsgs.ui.prfernces.SettingsFragment"
         android:label="SettingsFrag"
-        tools:layout=""/>
+        tools:layout="@layout/fragment_settings"/>
 </navigation>

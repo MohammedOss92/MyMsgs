@@ -24,11 +24,7 @@
         android:testOnly="false"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.prfernces.SettingsActivity"
-            android:exported="false"
-            android:supportsRtl="false"
-            android:label="@string/title_activity_settings" />
+
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
