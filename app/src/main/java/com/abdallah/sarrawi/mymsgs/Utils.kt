@@ -27,6 +27,18 @@ class Utils {
                 Log.d("error in share", e.toString())
             }
         }
+
+        fun shareApp(con: Context){
+            val sendIntent = Intent()
+            sendIntent.action=Intent.ACTION_SEND
+            sendIntent.type = "text/plain"
+            sendIntent.putExtra(Intent.EXTRA_TEXT," مشاركة التطبيق\n\n https://play.google.com/store/apps/details?id=com.abdallah.sarrawi.mymsgs")
+            con.startActivity(
+                Intent.createChooser(
+                    sendIntent,"choose one"
+                )
+            )
+        }
     }
 
 

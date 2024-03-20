@@ -7,6 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/interaction"
         android:text="تفاعل"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -15,33 +16,39 @@
         android:gravity="right"/>
 
     <!-- TextView لعرض الخيارات -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="قيم التطبيق"
-        android:textSize="15sp"
-        android:padding="8dp"
-        android:drawableEnd="@drawable/ic_star"
-        android:drawablePadding="8dp"/>
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/range"-->
+<!--        android:text="قيم التطبيق"-->
+<!--        android:textSize="15sp"-->
+<!--        android:padding="8dp"-->
+<!--        android:drawableEnd="@drawable/ic_star"-->
+<!--        android:drawablePadding="8dp"-->
+<!--        android:foreground="?android:attr/selectableItemBackground"/>-->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/share_app"
         android:text="إدعمنا بنشر التطبيق مع اصدقائك"
         android:textSize="15sp"
         android:padding="8dp"
         android:drawableEnd="@drawable/ic_group"
-        android:drawablePadding="8dp"/>
+        android:drawablePadding="8dp"
+        android:foreground="?android:attr/selectableItemBackground"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-    android:background="@drawable/shape_ic" />
+        android:id="@+id/shape"
+        android:background="@drawable/shape_ic" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="معلومات التطبيق"
+        android:id="@+id/info"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/title_text_color"
@@ -52,16 +59,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/vers"
         android:text="إصدار التطبيق"
         android:textSize="15sp"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:gravity="right"
+        android:foreground="?android:attr/selectableItemBackground"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/privacy"
         android:text="سياسة الخصوصية."
         android:textSize="15sp"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:foreground="?android:attr/selectableItemBackground"/>
 
 
     <!-- يمكنك إضافة المزيد من الـ TextView حسب الحاجة -->
