@@ -129,7 +129,7 @@ class FirstFragment : Fragment() {
                 binding.rcMsgTypes.layoutManager = LinearLayoutManager(requireContext())
                 binding.rcMsgTypes.adapter = msgstypesAdapter
             }
-
+            msgstypesAdapter.notifyDataSetChanged()
 
         }
 

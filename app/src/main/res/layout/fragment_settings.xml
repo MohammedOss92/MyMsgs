@@ -19,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="قيم التطبيق"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:padding="8dp"
         android:drawableEnd="@drawable/ic_star"
@@ -29,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="إدعمنا بنشر التطبيق مع اصدقائك"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:padding="8dp"
         android:drawableEnd="@drawable/ic_group"
@@ -55,7 +53,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="إصدار التطبيق"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:padding="8dp"/>
 
@@ -63,7 +60,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="سياسة الخصوصية."
-        android:textColor="#000000"
         android:textSize="15sp"
         android:padding="8dp" />
 
