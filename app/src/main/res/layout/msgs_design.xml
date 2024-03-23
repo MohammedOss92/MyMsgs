@@ -31,17 +31,17 @@
         android:descendantFocusability="afterDescendants"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <!--    <TextView-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:textAppearance="?android:attr/textAppearanceLarge"-->
-        <!--        android:id="@+id/tvTitle_m"-->
-        <!--        android:layout_centerVertical="true"-->
-        <!--        android:gravity="center"-->
-        <!--        android:text="-&#45;&#45;"-->
-        <!--        android:textColor="#ff0000"-->
-        <!--        android:layout_gravity="top"-->
-        <!--        />-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/tvTitle"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="---"
+                android:textColor="#ff0000"
+                android:layout_gravity="top"
+                />
 
         <TextView
             android:layout_width="match_parent"

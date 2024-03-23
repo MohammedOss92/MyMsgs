@@ -4,15 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.abdallah.sarrawi.mymsgs.db.Dao.FavoriteDao
 import com.abdallah.sarrawi.mymsgs.db.Dao.MsgsDao
 import com.abdallah.sarrawi.mymsgs.db.Dao.MsgsTypesDao
 import com.abdallah.sarrawi.mymsgs.models.FavoriteModel
+import com.abdallah.sarrawi.mymsgs.models.LocalDateTimeConverter
 import com.abdallah.sarrawi.mymsgs.models.MsgsModel
 import com.abdallah.sarrawi.mymsgs.models.MsgsTypesModel
 
 @Database(entities = [MsgsTypesModel::class,MsgsModel::class,FavoriteModel::class], version =6, exportSchema = false)
+@TypeConverters(LocalDateTimeConverter::class)
 abstract class PostDatabas : RoomDatabase() {
 
     abstract fun TypesDao():MsgsTypesDao

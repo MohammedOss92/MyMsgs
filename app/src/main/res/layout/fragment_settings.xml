@@ -16,16 +16,16 @@
         android:gravity="right"/>
 
     <!-- TextView لعرض الخيارات -->
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/range"-->
-<!--        android:text="قيم التطبيق"-->
-<!--        android:textSize="15sp"-->
-<!--        android:padding="8dp"-->
-<!--        android:drawableEnd="@drawable/ic_star"-->
-<!--        android:drawablePadding="8dp"-->
-<!--        android:foreground="?android:attr/selectableItemBackground"/>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/range"
+        android:text="قيم التطبيق"
+        android:textSize="15sp"
+        android:padding="8dp"
+        android:drawableEnd="@drawable/ic_star"
+        android:drawablePadding="8dp"
+        android:foreground="?android:attr/selectableItemBackground"/>
 
     <TextView
         android:layout_width="match_parent"

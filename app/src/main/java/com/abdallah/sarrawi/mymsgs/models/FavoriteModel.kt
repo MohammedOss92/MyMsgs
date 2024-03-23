@@ -5,6 +5,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.util.*
 
 @Entity(tableName = "Favorite_table")
 data class FavoriteModel(
@@ -27,7 +30,8 @@ data class FavoriteModel(
 
     @ColumnInfo("ID_Type_id", index = true)
     @SerializedName("ID_Type_id")
-    var ID_Type_id : Int
-
+    var ID_Type_id : Int,
+    @ColumnInfo(name = "createdAt")
+    var createdAt: String? = null
 
 )

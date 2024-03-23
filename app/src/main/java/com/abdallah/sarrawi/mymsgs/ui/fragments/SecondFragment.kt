@@ -27,6 +27,8 @@ import com.abdallah.sarrawi.mymsgs.models.MsgModelWithTitle
 import com.abdallah.sarrawi.mymsgs.repository.MsgsRepo
 import com.abdallah.sarrawi.mymsgs.ui.MainActivity
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class SecondFragment : Fragment() , CallBack {
@@ -82,9 +84,10 @@ class SecondFragment : Fragment() , CallBack {
     }
 
     private fun adapterOnClick(){
-
+        val currentTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
         msgsAdapter.onItemClick = { it: MsgModelWithTitle, i: Int ->
             val fav= FavoriteModel(it.msgModel!!.id,it.msgModel!!.MessageName,it.typeTitle,it.msgModel!!.new_msgs,it.msgModel!!.ID_Type_id)
+            fav.createdAt=currentTime
             // check if item is favorite or not
             if (it.msgModel!!.is_fav){
                 viewModel.update_fav(it.msgModel!!.id,false) // update favorite item state

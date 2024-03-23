@@ -1,25 +1,26 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory
+
+        app:title="معلومات التطبيق"
+         >
+
+        <Preference android:selectable="false" app:iconSpaceReserved="false" app:key="app_version" app:summary="" app:title="إصدار التطبيق" />
+        <Preference app:iconSpaceReserved="false" app:key="privacy_policy" app:summary="" app:title="سياسة الخصوصية" />
 
 
 
-        <ListPreference
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:defaultValue="reply" />
+        <Preference
+            app:key=""
+            app:title="" />
 
-        <ListPreference
-            app:key="hhhreply"
-            app:title="@string/reply_title"
-            >
-
-        </ListPreference>
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/sync_header">
 
-        <SwitchPreferenceCompat
+        <Preference
             app:key="sync"
             app:title="@string/sync_title" />
 

@@ -3,6 +3,7 @@ package com.abdallah.sarrawi.mymsgs
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
+import com.jakewharton.threetenabp.AndroidThreeTen
 
 class App : Application() {
 
@@ -13,7 +14,7 @@ class App : Application() {
      override fun onCreate() {
          super.onCreate()
          ctx = applicationContext
-
+         AndroidThreeTen.init(this)
          var sharedPref: SharedPref = SharedPref(this)
          IsDark=sharedPref.getThemeStatePref()
 
