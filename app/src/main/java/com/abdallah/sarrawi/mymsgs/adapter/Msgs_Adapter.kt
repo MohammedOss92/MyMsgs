@@ -48,9 +48,9 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
 
         fun bind(position: Int) {
             val current_msgsModel = msgsModel[position]
-            binding.tvTitle.text=current_msgsModel.typeTitle
-            binding.apply {
 
+            binding.apply {
+                tvTitle.text=current_msgsModel.typeTitle
                 tvMsgM.text = current_msgsModel.msgModel?.MessageName
                 newMsgM.setImageResource(R.drawable.new_msg)
                 if (current_msgsModel.msgModel?.new_msgs == 0) {

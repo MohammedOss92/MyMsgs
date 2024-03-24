@@ -15,12 +15,15 @@ interface FavoriteDao {
     @Query("select e.*, c.MsgTypes as typeTitle from  Favorite_table " +
             "e left join msg_types_table c  on " +
             " c.id = e.ID_Type_id where " +
-            "e.ID_Type_id order by c.id DESC")
+            "e.ID_Type_id order by e.createdAt DESC")
     fun getAllFav(): LiveData<List<FavoriteModel>>
 
     // delete favorite item from db
     @Delete
     suspend fun deletefav(item:FavoriteModel)
+
+    //@Query("SELECT ID_Type_id AS idType FROM Favorite_table ORDER BY ID_Type_id DESC")
+    //fun getAllFavMsgTypeIds(): LiveData<List<FavoriteModel>>
 
 
 }
