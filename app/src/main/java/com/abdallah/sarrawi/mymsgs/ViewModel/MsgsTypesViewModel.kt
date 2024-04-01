@@ -69,6 +69,36 @@ class MsgsTypesViewModel constructor(
         return _response
     }
 
+    suspend fun getAllMsgsTypeswithout(context: Context): MutableLiveData<List<MsgsTypesModel>> {
+
+        msgsTypesRepo.getMsgsTypes_Ser().let { response ->
+            Log.d("sww", "dfrr")
+            Log.d("sww", "" + response.body())
+            if (response.isSuccessful) {
+                // sweilem edit
+
+                Log.i("TestRoom", "getAllMsgsTypes: data returned successful")
+                _response.postValue(response.body()?.results)
+                Log.i("TestRoom", "getAllMsgsTypes: posts ${response.body()?.results}")
+                //here get data from api so will insert it to local database
+                msgsTypesRepo.insertPosts(response.body()?.results)
+                for (i in response.body()?.results!!) {
+                    MsgsViewModel(msgsRepo).getAllMsgs(i.id)
+                }
+
+                //context.hideprogressdialog()
+
+            } else {
+
+                //context.hideprogressdialog()
+
+                Log.i("TestRoom", "getAllMsgsTypes: data corrupted")
+                Log.d("tag", "getAll Error: ${response.code()}")
+            }
+        }
+        return _response
+    }
+
     fun getPostsFromRoom(context: MainActivity): MutableLiveData<List<MsgsTypesModel>> {
         viewModelScope.launch {
             val response = msgsTypesRepo.getMsgsTypes_Dao()
@@ -132,6 +162,26 @@ class MsgsTypesViewModel constructor(
                 getAllMsgsTypes(context)
             } else {
                     context.hideprogressdialog()
+
+                Toast.makeText(
+                    context,
+                    "please check your internet connection..",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+    }
+
+    fun refreshPostswithout(context: Context) {
+
+        viewModelScope.launch {
+            Log.i("TestRoom", "refreesh")
+            if (internetCheck(context)) {
+                //context.showprogressdialog()
+                //  context.hideprogressdialog()
+                getAllMsgsTypeswithout(context)
+            } else {
+                //context.hideprogressdialog()
 
                 Toast.makeText(
                     context,

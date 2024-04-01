@@ -11,11 +11,11 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("msgtypes_api")
+    @GET("msgtypes_api_show")
     //sweilem edit
     suspend fun getMsgsTypes_Ser(): Response<MsgsTypesResponse>
 
-    @GET("msgsapi/{ID_Type_id}")
+    @GET("msgsapishow/{ID_Type_id}")
     suspend fun getMsgs_Ser
         (@Path("ID_Type_id") ID_Type_id:Int
     ):Response<MsgsResponse>
@@ -27,7 +27,7 @@ interface ApiService {
         fun provideRetrofitInstance(): ApiService {
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("http://www.sarrawi.bio/")
+                    .baseUrl("http://www.sarrawi.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 retrofitService = retrofit.create(ApiService::class.java)
