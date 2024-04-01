@@ -38,7 +38,7 @@ class RefreshPostsService : JobIntentService() {
             MsgsTypesViewModel::class.java
         )
         viewModel.viewModelScope.launch{
-            viewModel.refreshPosts(con)
+            viewModel.refreshPostswithout(con)
         }
 
     }
