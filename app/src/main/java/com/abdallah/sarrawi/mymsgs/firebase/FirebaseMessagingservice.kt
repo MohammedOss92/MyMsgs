@@ -24,28 +24,7 @@ class FirebaseMessagingservice : FirebaseMessagingService() {
 
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-//        Intent intent=new Intent(this,MainActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
-//        String chanelId = "Default";
-//        notifiaction=new NotificationCompat.Builder(this,chanelId)
-//
-//
-//
-//                .setSmallIcon(R.drawable.ic_launcher_background)
-//                .setContentTitle(remoteMessage.getNotification().getTitle())
-//                .setContentText(remoteMessage.getNotification().getBody()).setAutoCancel(true).setContentIntent(pendingIntent);
-//
-//        NotificationManager notificationManager=(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            NotificationChannel channel = new NotificationChannel(chanelId,"Default chanel",
-//                    NotificationManager.IMPORTANCE_DEFAULT);
-//            notificationManager.createNotificationChannel(channel);
-//        }
-//
-//        notificationManager.notify(0,notifiaction.build());
-//        super.onMessageReceived(remoteMessage);
+
         val title = remoteMessage.notification!!.title
         val body = remoteMessage.notification!!.body
         val imgurl = remoteMessage.data["image"]

@@ -3,6 +3,7 @@ package com.abdallah.sarrawi.mymsgs.broadcastReceiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewModelScope
@@ -20,6 +21,7 @@ class InstallReceiver : BroadcastReceiver() {
     lateinit var viewModel: MsgsTypesViewModel
 
     override fun onReceive(context: Context, intent: Intent) {
+        Log.d("InstallReceiver", "Received broadcast")
         if (intent.action == Intent.ACTION_PACKAGE_ADDED) {
             val packageName = intent.data?.schemeSpecificPart
             if (packageName == context.packageName) {
@@ -31,6 +33,7 @@ class InstallReceiver : BroadcastReceiver() {
                 viewModel.viewModelScope.launch {
                     viewModel.refreshPostswithout(context)
                 }
+                Log.d("InstallReceiver", "Received broadcast")
             }
         }
     }

@@ -2,6 +2,7 @@ package com.abdallah.sarrawi.mymsgs.broadcastReceiver
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.core.app.JobIntentService
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -13,6 +14,8 @@ import com.abdallah.sarrawi.mymsgs.db.LocaleSource
 import com.abdallah.sarrawi.mymsgs.repository.MsgsRepo
 import com.abdallah.sarrawi.mymsgs.repository.MsgsTypesRepo
 import com.abdallah.sarrawi.mymsgs.ui.MainActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RefreshPostsService : JobIntentService() {
@@ -30,18 +33,21 @@ class RefreshPostsService : JobIntentService() {
     }
 
     override fun onHandleWork(intent: Intent) {
-        val con = applicationContext as MainActivity
-        val retrofitService = ApiService.provideRetrofitInstance()
-        val mainRepository = MsgsTypesRepo(retrofitService, LocaleSource(this))
-        val mainRepository2 = MsgsRepo(retrofitService, LocaleSource(this))
-        viewModel = ViewModelProvider(con, MyViewModelFactory(mainRepository, mainRepository2, con)).get(
-            MsgsTypesViewModel::class.java
-        )
-        viewModel.viewModelScope.launch{
-            viewModel.refreshPostswithout(con)
-        }
+        Log.d("RefreshPostsService", "Handling work")
 
+        val context = applicationContext as MainActivity
+        val serviceScope = CoroutineScope(Dispatchers.Default)
+        serviceScope.launch {
+            val retrofitService = ApiService.provideRetrofitInstance()
+            val mainRepository = MsgsTypesRepo(retrofitService, LocaleSource(context))
+            val mainRepository2 = MsgsRepo(retrofitService, LocaleSource(context))
+            val viewModel = ViewModelProvider(context).get(MsgsTypesViewModel::class.java)
+            viewModel.refreshPosts(context)
+        }
+        Log.d("RefreshPostsService", "Handling work")
     }
+
+
 }
 
 /*class RefreshPostsJobService : JobService() {
