@@ -14,7 +14,7 @@ import com.abdallah.sarrawi.mymsgs.models.LocalDateTimeConverter
 import com.abdallah.sarrawi.mymsgs.models.MsgsModel
 import com.abdallah.sarrawi.mymsgs.models.MsgsTypesModel
 
-@Database(entities = [MsgsTypesModel::class,MsgsModel::class,FavoriteModel::class], version =6, exportSchema = false)
+@Database(entities = [MsgsTypesModel::class,MsgsModel::class,FavoriteModel::class], version =7, exportSchema = false)
 @TypeConverters(LocalDateTimeConverter::class)
 abstract class PostDatabas : RoomDatabase() {
 
