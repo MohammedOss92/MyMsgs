@@ -8,7 +8,6 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.room.migration.Migration
-import androidx.work.impl.WorkDatabaseMigrations.MIGRATION_7_8
 import com.abdallah.sarrawi.mymsgs.db.Dao.FavoriteDao
 import com.abdallah.sarrawi.mymsgs.db.Dao.MsgsDao
 import com.abdallah.sarrawi.mymsgs.db.Dao.MsgsTypesDao
@@ -37,26 +36,25 @@ abstract class PostDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): PostDatabase {
-            return Room.databaseBuilder(context, PostDatabase::class.java, "PostDatabase.db")
-                .addMigrations(MIGRATION_6_7,MIGRATION_7_8)
+            return Room.databaseBuilder(context.applicationContext, PostDatabase::class.java, "PostDatabase.db")
+                .addMigrations(MIGRATION_6_7, MIGRATION_7_8)
+                .fallbackToDestructiveMigration()
                 .build()
         }
 
-        val MIGRATION_6_7: Migration = object : Migration(6, 7) {
+        private val MIGRATION_6_7: Migration = object : Migration(6, 7) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 // تنفيذ عملية الترحيل هنا
-                database.execSQL("ALTER TABLE msg_table ADD COLUMN createdAt INTEGER")
-
             }
         }
-            val MIGRATION_7_8:Migration = object : Migration(7,8){
-                override fun migrate(database: SupportSQLiteDatabase) {
 
-                }
-
+        private val MIGRATION_7_8: Migration = object : Migration(7, 8) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE msg_table ADD COLUMN createdAt String")
             }
         }
     }
+}
 
 
 /*
