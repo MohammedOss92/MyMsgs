@@ -113,9 +113,7 @@ class MainActivity : AppCompatActivity() {
             R.id.action_refresh -> {
 
                 viewModel.refreshPosts(this)
-//                Handler(Looper.getMainLooper()).postDelayed(1000) {
-//                    // Do something
-//                }
+
                 true
             }
             else -> super.onOptionsItemSelected(item)
