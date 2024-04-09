@@ -161,7 +161,7 @@ class NewMsgsFragment : Fragment(), CallBack {
                 when(menuItem.itemId){
 
                     R.id.action_zakrafah ->{
-                        val dir = SecondFragmentDirections.actionSecondFragmentToEditFragment("")
+                        val dir = NewMsgsFragmentDirections.actionNewMsgsFragmentToEditFragment("")
                         NavHostFragment.findNavController(this@NewMsgsFragment).navigate(dir)
                     }
 

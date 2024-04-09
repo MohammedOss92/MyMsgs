@@ -23,6 +23,8 @@ import com.abdallah.sarrawi.mymsgs.ui.fragments.SecondFragmentDirections
 import com.abdallah.sarrawi.mymsgs.R
 import com.abdallah.sarrawi.mymsgs.Utils
 import com.abdallah.sarrawi.mymsgs.databinding.MsgsDesignBinding
+import com.abdallah.sarrawi.mymsgs.ui.fragments.NewMsgsFragment
+import com.abdallah.sarrawi.mymsgs.ui.fragments.NewMsgsFragmentDirections
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 
@@ -132,6 +134,21 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
                         )
 
                         findNavController(frag).navigate(direction)
+
+
+                        true
+                    }
+
+                    R.id.edit ->{
+                        Toast.makeText(con, "edit", Toast.LENGTH_SHORT).show()
+
+                        val direction = NewMsgsFragmentDirections.actionSecondFragmentToEditFragment(
+                            binding.tvMsgM.text.toString()
+                        )
+
+                        findNavController(frag).navigate(direction)
+
+
                         true
                     }
 

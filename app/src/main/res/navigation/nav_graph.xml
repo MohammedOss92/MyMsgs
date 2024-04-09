@@ -72,7 +72,16 @@
         android:id="@+id/newMsgsFragment"
         android:name="com.abdallah.sarrawi.mymsgs.ui.fragments.NewMsgsFragment"
         android:label="fragment_new_msgs"
-        tools:layout="@layout/fragment_new_msgs" />
+        tools:layout="@layout/fragment_new_msgs" >
+        <action
+            android:id="@+id/action_newMsgsFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+
+
+        <action
+            android:id="@+id/action_secondFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+    </fragment>
 
 
     <fragment
