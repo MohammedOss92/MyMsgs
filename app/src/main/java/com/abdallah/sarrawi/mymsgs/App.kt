@@ -28,13 +28,9 @@ class App : Application() {
              AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
          }
 
-         registerRefreshPostsService()
      }
 
-    private fun registerRefreshPostsService() {
-        val serviceIntent = Intent(this, RefreshPostsService::class.java)
-        startService(serviceIntent)
-    }
+
 
 //    private fun registerRefreshPostsService() {
 //        val serviceIntent = Intent(this, RefreshPostsService::class.java)
