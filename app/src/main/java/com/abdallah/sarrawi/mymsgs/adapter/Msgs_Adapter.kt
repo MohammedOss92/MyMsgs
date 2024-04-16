@@ -68,26 +68,7 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
                 }
             }
 
-//            binding.apply {
-//                tvMsgM.text = current_msgsModel.msgModel?.MessageName
-//                newMsgM.setImageResource(R.drawable.new_msg)
-//
-//                // التحقق من قيمة new_msgs
-//                if (current_msgsModel.msgModel?.new_msgs == 0) {
-//                    newMsgM.setVisibility(View.INVISIBLE)
-//                } else {
-//                    newMsgM.setVisibility(View.VISIBLE)
-//                }
-//
-//                // التحقق من قيمة is_fav
-//                current_msgsModel.msgModel?.is_fav?.let { isFav ->
-//                    if (isFav) {
-//                        favBtn.setImageResource(R.drawable.baseline_favorite_true)
-//                    } else {
-//                        favBtn.setImageResource(R.drawable.baseline_favorite_border_false)
-//                    }
-//                }
-//            }
+
             binding.favBtn.setOnClickListener {
 
                 onItemClick?.invoke(msgsModel[position], position)
@@ -183,20 +164,14 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(MsgsDesignBinding.inflate(LayoutInflater.from(parent.context),parent,false))
-        /*
-        * override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-    if (viewType == AD_TYPE) {
-        return AdViewHolder(NativeAdsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-    } else {
-        return MyViewHolder(MsgsDesignBinding.inflate(LayoutInflater.from(parent.context),parent,false))
-    }
-}*/
+
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         Log.e("tessst","notifyyyy")
         holder.bind(position)
-        if (position % adCount == 0) {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان
+        if ((position + 1) % adCount == 0)
+        {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان
             Log.d("AD_TAG", "Loading Ad at position $position")
             holder.adView?.loadAd(AdRequest.Builder().build())  // تحميل الإعلان
 

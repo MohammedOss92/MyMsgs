@@ -130,7 +130,8 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
             }
         }
 
-        if (position % adCount == 0) {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان
+        if ((position + 1) % adCount == 0)
+        {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان
             Log.d("AD_TAG", "Loading Ad at position $position")
             holder.adView?.loadAd(AdRequest.Builder().build())  // تحميل الإعلان
 
