@@ -39,7 +39,7 @@ abstract class PostDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context): PostDatabase {
             return Room.databaseBuilder(context.applicationContext, PostDatabase::class.java, "PostDatabase.db")
 //                .addMigrations(MIGRATION_6_7, MIGRATION_7_8,MIGRATION_8_9)
-                .fallbackToDestructiveMigration()
+
                 .build()
         }
 
