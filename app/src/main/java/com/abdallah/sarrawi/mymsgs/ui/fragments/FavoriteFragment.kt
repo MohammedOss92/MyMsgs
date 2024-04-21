@@ -28,6 +28,7 @@ import com.abdallah.sarrawi.mymsgs.models.FavoriteModel
 import com.abdallah.sarrawi.mymsgs.repository.MsgsRepo
 import com.abdallah.sarrawi.mymsgs.repository.MsgsTypesRepo
 import com.abdallah.sarrawi.mymsgs.ui.MainActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class FavoriteFragment : Fragment() {
@@ -69,6 +70,7 @@ class FavoriteFragment : Fragment() {
     private fun adapterOnClick() {
 
         msgfavadapter.onItemClick = {
+
             viewModel.viewModelScope.launch {
                 viewModel.update_fav(it.id,false) // update item state
                 val result = mainRepository.deleteFav(it)   // delete favorite item from db
@@ -104,30 +106,31 @@ class FavoriteFragment : Fragment() {
 
 
     @SuppressLint("SuspiciousIndentation")
-    private  fun setUpRv() = viewModel.viewModelScope.launch {
-
-//        binding.rcMsgTypes.apply {
-//            adapter = msgstypesAdapter
-//            setHasFixedSize(true)
-//        }
-
-
+    private fun setUpRv() = viewModel.viewModelScope.launch {
         viewModel.getFav().observe(viewLifecycleOwner) { listShows ->
-            //  msgsAdapter.stateRestorationPolicy=RecyclerView.Adapter.StateRestorationPolicy.ALLOW
-            msgfavadapter.stateRestorationPolicy= RecyclerView.Adapter.StateRestorationPolicy.ALLOW
-//            msgsAdapter.msgsModel = listShows
-//            binding.rcMsgs.adapter = msgsAdapter
+            if (listShows.isEmpty()) {
+                showSnackbar("لا يوجد بيانات")
+            }
+
+            msgfavadapter.stateRestorationPolicy =
+                RecyclerView.Adapter.StateRestorationPolicy.ALLOW
             msgfavadapter.msgs_fav_list = listShows
-            if(binding.rcMsgFav.adapter == null){
+            if (binding.rcMsgFav.adapter == null) {
                 binding.rcMsgFav.layoutManager = LinearLayoutManager(requireContext())
                 binding.rcMsgFav.adapter = msgfavadapter
-            }else{
+            } else {
                 msgfavadapter.notifyDataSetChanged()
             }
-            Log.e("tessst","enter111")
-
+            Log.e("tessst", "enter111")
         }
     }
+
+
+
+    private fun showSnackbar(message: String) {
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
+    }
+
 
     private fun menu_item() {
         // The usage of an interface lets you inject your own implementation
