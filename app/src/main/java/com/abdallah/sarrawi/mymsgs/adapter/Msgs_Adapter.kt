@@ -1,6 +1,7 @@
 package com.abdallah.sarrawi.mymsgs.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ClipData
 import android.content.Context
 import android.os.Build
@@ -19,14 +20,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 import com.abdallah.sarrawi.mymsgs.models.MsgModelWithTitle
-import com.abdallah.sarrawi.mymsgs.ui.fragments.SecondFragmentDirections
 import com.abdallah.sarrawi.mymsgs.R
 import com.abdallah.sarrawi.mymsgs.Utils
 import com.abdallah.sarrawi.mymsgs.databinding.MsgsDesignBinding
-import com.abdallah.sarrawi.mymsgs.ui.fragments.NewMsgsFragment
-import com.abdallah.sarrawi.mymsgs.ui.fragments.NewMsgsFragmentDirections
+import com.abdallah.sarrawi.mymsgs.ui.fragments.*
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 
 class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/) : RecyclerView.Adapter<Msgs_Adapter.MyViewHolder>() {
@@ -34,6 +37,8 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
     var onItemClick: ((item:MsgModelWithTitle,position:Int) -> Unit)? = null
     var onClick: ((Unit) -> Unit)? = null
     private var adCount = 4
+    private var shareCount = 0
+    var mInterstitialAd: InterstitialAd?=null
 
     @SuppressLint("NotifyDataSetChanged")
     inner class MyViewHolder(val binding: MsgsDesignBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -43,7 +48,7 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
 
 
             binding.moreBtn.setOnClickListener{popupMenus(it)}
-            adView= itemView.findViewById(R.id.adView)
+//            adView= itemView.findViewById(R.id.adView)
 
         }
 
@@ -83,14 +88,44 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
             popupMenu.setOnMenuItemClickListener {
                 when(it.itemId){
                     R.id.share ->{
+                        shareCount++
 
 
-                        Utils.IntenteShare(con, "مسجاتي", "مسجاتي",binding.tvMsgM.text.toString() )
+                        if (shareCount >= 1) {
+// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+                            if (mInterstitialAd != null) {
+                                mInterstitialAd?.show(con as Activity)
+                            } else {
+                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+                            }
+                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
 
+
+                        }
+                        Utils.IntenteShare(
+                            con,
+                            "مسجاتي",
+                            "مسجاتي",
+                            binding.tvMsgM.text.toString()
+                        )
                         true
                     }
                     R.id.copy ->{
 
+                        shareCount++
+
+
+                        if (shareCount >= 1) {
+// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+                            if (mInterstitialAd != null) {
+                                mInterstitialAd?.show(con as Activity)
+                            } else {
+                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+                            }
+                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+
+
+                        }
                         val stringYouExtracted: String = binding.tvMsgM.text.toString()
 
                         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
@@ -108,6 +143,20 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
                         true
                     }
                     R.id.edit ->{
+                        shareCount++
+
+
+                        if (shareCount >= 1) {
+// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+                            if (mInterstitialAd != null) {
+                                mInterstitialAd?.show(con as Activity)
+                            } else {
+                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+                            }
+                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+
+
+                        }
                         Toast.makeText(con, "edit", Toast.LENGTH_SHORT).show()
 
                         val direction = SecondFragmentDirections.actionSecondFragmentToEditFragment(
@@ -121,6 +170,21 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
                     }
 
                     R.id.edit ->{
+
+                        shareCount++
+
+
+                        if (shareCount >= 1) {
+// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+                            if (mInterstitialAd != null) {
+                                mInterstitialAd?.show(con as Activity)
+                            } else {
+                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+                            }
+                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+
+
+                        }
                         Toast.makeText(con, "edit", Toast.LENGTH_SHORT).show()
 
                         val direction = NewMsgsFragmentDirections.actionSecondFragmentToEditFragment(
@@ -170,12 +234,13 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         Log.e("tessst","notifyyyy")
         holder.bind(position)
-        if ((position + 1) % adCount == 0)
-        {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان
-            Log.d("AD_TAG", "Loading Ad at position $position")
-            holder.adView?.loadAd(AdRequest.Builder().build())  // تحميل الإعلان
-
-        }
+        InterstitialAd_fun ()
+//        if ((position + 1) % adCount == 0)
+//        {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان
+//            Log.d("AD_TAG", "Loading Ad at position $position")
+//            holder.adView?.loadAd(AdRequest.Builder().build())  // تحميل الإعلان
+//
+//        }
 
 //        val current_msgsModel = msgsModel[position]
 //        holder.binding.apply {
@@ -236,8 +301,36 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
 
 
     }
+//    mInterstitialAd?.show(con as Activity)
 
     override fun getItemCount(): Int {
         return msgsModel.size
+    }
+    fun InterstitialAd_fun (){
+
+
+        MobileAds.initialize(con) { initializationStatus ->
+            // do nothing on initialization complete
+        }
+
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(
+            con,
+            "ca-app-pub-1895204889916566/9391166409",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    // The mInterstitialAd reference will be null until an ad is loaded.
+                    mInterstitialAd = interstitialAd
+                    Log.i("onAdLoadedL", "onAdLoaded")
+                }
+
+                override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                    // Handle the error
+                    Log.d("onAdLoadedF", loadAdError.toString())
+                    mInterstitialAd = null
+                }
+            }
+        )
     }
 }

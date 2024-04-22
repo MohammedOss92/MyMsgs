@@ -1,5 +1,6 @@
 package com.abdallah.sarrawi.mymsgs.adapter
 
+import android.app.Activity
 import android.content.ClipData
 import android.content.Context
 import android.os.Build
@@ -25,17 +26,24 @@ import com.abdallah.sarrawi.mymsgs.models.MsgModelWithTitle
 import com.abdallah.sarrawi.mymsgs.ui.fragments.FavoriteFragmentDirections
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter<Msgs_Fav_Adapter.MyViewHolder>() {
     var onItemClick: ((fav:FavoriteModel) -> Unit)? = null // pass favorite item on click
     private var adCount = 4
+    var mInterstitialAd: InterstitialAd?=null
+    private var shareCount = 0
+
     inner class MyViewHolder(val binding: MsgsFavDeBinding) : RecyclerView.ViewHolder(binding.root) {
-        var adView: AdView?=null
+//        var adView: AdView?=null
         init {
                 binding.favBtn.setOnClickListener {
                 onItemClick?.invoke(msgs_fav_list[adapterPosition])
                 }
-            adView= itemView.findViewById(R.id.adView)
+//            adView= itemView.findViewById(R.id.adView)
             binding.moreBtnFav.setOnClickListener{popupMenus(it)}
         }
 
@@ -47,6 +55,21 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
             popupMenu.setOnMenuItemClickListener {
                 when(it.itemId){
                     R.id.share ->{
+
+                        shareCount++
+
+
+                        if (shareCount >= 1) {
+// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+                            if (mInterstitialAd != null) {
+                                mInterstitialAd?.show(con as Activity)
+                            } else {
+                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+                            }
+                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+
+
+                        }
                         val v = LayoutInflater.from(con).inflate(R.layout.msgs_design,null)
                         val tvMsg = v.findViewById<TextView>(R.id.tvMsg_m)
 
@@ -55,6 +78,20 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
                         true
                     }
                     R.id.copy ->{
+                        shareCount++
+
+
+                        if (shareCount >= 1) {
+// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+                            if (mInterstitialAd != null) {
+                                mInterstitialAd?.show(con as Activity)
+                            } else {
+                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+                            }
+                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+
+
+                        }
                         val v = LayoutInflater.from(con).inflate(R.layout.msgs_design,null)
                         val tvMsg = v.findViewById<TextView>(R.id.tvMsg_m)
 
@@ -77,6 +114,20 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
                         true
                     }
                     R.id.edit ->{
+                        shareCount++
+
+
+                        if (shareCount >= 1) {
+// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+                            if (mInterstitialAd != null) {
+                                mInterstitialAd?.show(con as Activity)
+                            } else {
+                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+                            }
+                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+
+
+                        }
                         val dir = FavoriteFragmentDirections.actionFavoriteFragmentToEditFragment(
                             binding.tvMsgM.text.toString()
                         )
@@ -128,14 +179,16 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
             else {
                 newMsgM.setVisibility(View.VISIBLE)
             }
-        }
-
-        if ((position + 1) % adCount == 0)
-        {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان
-            Log.d("AD_TAG", "Loading Ad at position $position")
-            holder.adView?.loadAd(AdRequest.Builder().build())  // تحميل الإعلان
 
         }
+        InterstitialAd_fun ()
+
+//        if ((position + 1) % adCount == 0)
+//        {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان
+//            Log.d("AD_TAG", "Loading Ad at position $position")
+//            holder.adView?.loadAd(AdRequest.Builder().build())  // تحميل الإعلان
+//
+//        }
 
 //        if (position % adCount == 0) {
 //            Log.d("AD_TAG", "Loading Ad at position $position")
@@ -154,5 +207,33 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
 
     override fun getItemCount(): Int {
         return msgs_fav_list.size
+    }
+
+    fun InterstitialAd_fun (){
+
+
+        MobileAds.initialize(con) { initializationStatus ->
+            // do nothing on initialization complete
+        }
+
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(
+            con,
+            "ca-app-pub-1895204889916566/9391166409",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    // The mInterstitialAd reference will be null until an ad is loaded.
+                    mInterstitialAd = interstitialAd
+                    Log.i("onAdLoadedL", "onAdLoaded")
+                }
+
+                override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                    // Handle the error
+                    Log.d("onAdLoadedF", loadAdError.toString())
+                    mInterstitialAd = null
+                }
+            }
+        )
     }
 }

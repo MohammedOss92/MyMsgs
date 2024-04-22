@@ -40,28 +40,38 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import kotlinx.coroutines.launch
 
 class FirstFragment : Fragment() {
-    private lateinit var _binding : FragmentFirstBinding
+    private lateinit var _binding: FragmentFirstBinding
     private val binding get() = _binding
     var isDark = true
     lateinit var rootLayout: ConstraintLayout
     var mprogressdaialog: Dialog? = null
 
     var clickCount = 0
-    var mInterstitialAd: InterstitialAd?=null
+    var mInterstitialAd: InterstitialAd? = null
 
 
-    private val msgstypesAdapter by lazy {  MsgsTypes_Adapter(/*isDark*/) }
+    private val msgstypesAdapter by lazy { MsgsTypes_Adapter(/*isDark*/) }
     private val retrofitService = ApiService.provideRetrofitInstance()
-    private val mainRepository2 by lazy {  MsgsRepo(retrofitService, LocaleSource(requireContext())) }
+    private val mainRepository2 by lazy {
+        MsgsRepo(
+            retrofitService,
+            LocaleSource(requireContext())
+        )
+    }
 
-    private val mainRepository by lazy {  MsgsTypesRepo(retrofitService, LocaleSource(requireContext())) }
+    private val mainRepository by lazy {
+        MsgsTypesRepo(
+            retrofitService,
+            LocaleSource(requireContext())
+        )
+    }
 
-    private val viewModel: MsgsTypesViewModel by viewModels{
-        MyViewModelFactory(mainRepository,mainRepository2,requireActivity() as MainActivity)
+    private val viewModel: MsgsTypesViewModel by viewModels {
+        MyViewModelFactory(mainRepository, mainRepository2, requireActivity() as MainActivity)
     }
 
 
-    private val viewModel2: MsgsViewModel by viewModels{
+    private val viewModel2: MsgsViewModel by viewModels {
         ViewModelFactory(mainRepository2)
     }
 
@@ -70,7 +80,7 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
-       Log.e("tessst","entred")
+        Log.e("tessst", "entred")
         (activity as MainActivity).fragment = 1
 
 
@@ -88,11 +98,10 @@ class FirstFragment : Fragment() {
     }
 
 
-
-    private fun adapterOnClick(){
+    private fun adapterOnClick() {
         //لاحظ الفانكشن انها بترمي الid
 //        msgstypesAdapter.onItemClick = {id, MsgTypes ->
-        msgstypesAdapter.onItemClick = {id ->
+        msgstypesAdapter.onItemClick = { id ->
 //            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
 //            val direction = FirstFragmentDirections.actionFirsFragmentToSecondFragment(id, MsgTypes)
 //            InterstitialAd_fun()
@@ -115,30 +124,25 @@ class FirstFragment : Fragment() {
     }
 
 
-
     private fun setUpRv() = viewModel.viewModelScope.launch {
 
 
-
-        viewModel.getPostsFromRoomWithCounts(requireContext() as MainActivity).observe(requireActivity()) { listTvShows ->
-       //     Log.e("tessst",listTvShows.size.toString()+"  adapter")
-            msgstypesAdapter.stateRestorationPolicy= RecyclerView.Adapter.StateRestorationPolicy.ALLOW
-            msgstypesAdapter.msgsTypesModel = listTvShows
-            if(binding.rcMsgTypes.adapter == null){
+        viewModel.getPostsFromRoomWithCounts(requireContext() as MainActivity)
+            .observe(requireActivity()) { listTvShows ->
+                //     Log.e("tessst",listTvShows.size.toString()+"  adapter")
+                msgstypesAdapter.stateRestorationPolicy =
+                    RecyclerView.Adapter.StateRestorationPolicy.ALLOW
                 msgstypesAdapter.msgsTypesModel = listTvShows
-                binding.rcMsgTypes.layoutManager = LinearLayoutManager(requireContext())
-                binding.rcMsgTypes.adapter = msgstypesAdapter
-            }
-            msgstypesAdapter.notifyDataSetChanged()
+                if (binding.rcMsgTypes.adapter == null) {
+                    msgstypesAdapter.msgsTypesModel = listTvShows
+                    binding.rcMsgTypes.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rcMsgTypes.adapter = msgstypesAdapter
+                }
+                msgstypesAdapter.notifyDataSetChanged()
 
-        }
+            }
 
     }
-
-
-
-
-
 
 
     private fun menu_item() {
@@ -152,7 +156,7 @@ class FirstFragment : Fragment() {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
 
-                when(menuItem.itemId){
+                when (menuItem.itemId) {
                     R.id.action_refresh -> {
                         viewModel.refreshPosts(requireActivity() as MainActivity)
                     }
@@ -164,10 +168,9 @@ class FirstFragment : Fragment() {
                         val isDark = prefs.getThemeStatePref()
                         prefs.saveThemeStatePref(!isDark)
 
-                        if(isDark){
+                        if (isDark) {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                        }
-                        else{
+                        } else {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                         }
                     }
@@ -176,7 +179,7 @@ class FirstFragment : Fragment() {
                 return true
             }
 
-        },viewLifecycleOwner, Lifecycle.State.RESUMED)
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     fun showprogressdialog() {
@@ -191,7 +194,7 @@ class FirstFragment : Fragment() {
     }
 
     fun hideprogressdialog() {
-        Log.e("tesssst","entred")
+        Log.e("tesssst", "entred")
         //  recreate()
         // mprogressdaialog!!.dismiss()
         binding.progressBar.visibility = View.GONE
@@ -211,33 +214,47 @@ class FirstFragment : Fragment() {
     }
 
 
-   fun InterstitialAd_fun (){
+    fun InterstitialAd_fun() {
 
 
-       MobileAds.initialize(requireActivity()) { initializationStatus ->
-           // do nothing on initialization complete
-       }
+        MobileAds.initialize(requireActivity()) { initializationStatus ->
+            // do nothing on initialization complete
+        }
 
-       val adRequest = AdRequest.Builder().build()
-       InterstitialAd.load(
-           requireActivity(),
-           "ca-app-pub-1895204889916566/9391166409",
-           adRequest,
-           object : InterstitialAdLoadCallback() {
-               override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                   // The mInterstitialAd reference will be null until an ad is loaded.
-                   mInterstitialAd = interstitialAd
-                   Log.i("onAdLoadedL", "onAdLoaded")
-               }
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(
+            requireActivity(),
+            "ca-app-pub-1895204889916566/9391166409",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    // The mInterstitialAd reference will be null until an ad is loaded.
+                    mInterstitialAd = interstitialAd
+                    Log.i("onAdLoadedL", "onAdLoaded")
+                }
 
-               override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                   // Handle the error
-                   Log.d("onAdLoadedF", loadAdError.toString())
-                   mInterstitialAd = null
-               }
-           }
-       )
-   }
+                override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                    // Handle the error
+                    Log.d("onAdLoadedF", loadAdError.toString())
+                    mInterstitialAd = null
+                }
+            }
+        )
+    }
+
+     fun showInterstitialAd() {
+        mInterstitialAd?.show(requireActivity())
+    }
+
+    // قم بتعيين هذه الدالة كنقطة دخول لعرض الإعلان عند الحاجة
+     fun displayInterstitialAdIfReady() {
+        if (mInterstitialAd != null) {
+            // يمكنك هنا إضافة المزيد من الشروط لعرض الإعلان، إذا لزم الأمر
+            showInterstitialAd()
+        } else {
+            Log.d("TAG", "The interstitial ad wasn't ready yet.")
+        }
 
 
+    }
 }

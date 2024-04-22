@@ -98,13 +98,13 @@
 
 </androidx.cardview.widget.CardView>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/card"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-1895204889916566/1988879602" />
+<!--    <com.google.android.gms.ads.AdView-->
+<!--        android:id="@+id/adView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/card"-->
+<!--        app:adSize="BANNER"-->
+<!--        app:adUnitId="ca-app-pub-1895204889916566/1988879602" />-->
 </RelativeLayout>
     <!--        <ImageView-->
     <!--            android:id="@+id/fav"-->

@@ -91,14 +91,14 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/cardd"
-        app:adSize="BANNER"
+<!--    <com.google.android.gms.ads.AdView-->
+<!--        android:id="@+id/adView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/cardd"-->
+<!--        app:adSize="BANNER"-->
 
-        app:adUnitId="ca-app-pub-1895204889916566/1988879602" />
+<!--        app:adUnitId="ca-app-pub-1895204889916566/1988879602" />-->
 </RelativeLayout>
 
     <!--        <ImageView-->
