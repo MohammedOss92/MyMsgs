@@ -189,7 +189,7 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
 //            holder.adView?.loadAd(AdRequest.Builder().build())  // تحميل الإعلان
 //
 //        }
-
+//شش/
 //        if (position % adCount == 0) {
 //            Log.d("AD_TAG", "Loading Ad at position $position")
 //            holder.adView?.loadAd(AdRequest.Builder().build())
