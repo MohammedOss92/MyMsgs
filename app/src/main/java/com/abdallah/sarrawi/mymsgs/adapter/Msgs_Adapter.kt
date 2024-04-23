@@ -88,20 +88,20 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
             popupMenu.setOnMenuItemClickListener {
                 when(it.itemId){
                     R.id.share ->{
-                        shareCount++
-
-
-                        if (shareCount >= 1) {
-// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
-                            if (mInterstitialAd != null) {
-                                mInterstitialAd?.show(con as Activity)
-                            } else {
-                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
-                            }
-                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
-
-
-                        }
+//                        shareCount++
+//
+//
+//                        if (shareCount >= 1) {
+//// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+//                            if (mInterstitialAd != null) {
+//                                mInterstitialAd?.show(con as Activity)
+//                            } else {
+//                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+//                            }
+//                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+//
+//
+//                        }
                         Utils.IntenteShare(
                             con,
                             "مسجاتي",
@@ -112,20 +112,20 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
                     }
                     R.id.copy ->{
 
-                        shareCount++
-
-
-                        if (shareCount >= 1) {
-// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
-                            if (mInterstitialAd != null) {
-                                mInterstitialAd?.show(con as Activity)
-                            } else {
-                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
-                            }
-                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
-
-
-                        }
+//                        shareCount++
+//
+//
+//                        if (shareCount >= 1) {
+//// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+//                            if (mInterstitialAd != null) {
+//                                mInterstitialAd?.show(con as Activity)
+//                            } else {
+//                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+//                            }
+//                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+//
+//
+//                        }
                         val stringYouExtracted: String = binding.tvMsgM.text.toString()
 
                         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
@@ -143,20 +143,20 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
                         true
                     }
                     R.id.edit ->{
-                        shareCount++
-
-
-                        if (shareCount >= 1) {
-// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
-                            if (mInterstitialAd != null) {
-                                mInterstitialAd?.show(con as Activity)
-                            } else {
-                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
-                            }
-                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
-
-
-                        }
+//                        shareCount++
+//
+//
+//                        if (shareCount >= 1) {
+//// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+//                            if (mInterstitialAd != null) {
+//                                mInterstitialAd?.show(con as Activity)
+//                            } else {
+//                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+//                            }
+//                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+//
+//
+//                        }
                         Toast.makeText(con, "edit", Toast.LENGTH_SHORT).show()
 
                         val direction = SecondFragmentDirections.actionSecondFragmentToEditFragment(
@@ -171,20 +171,20 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
 
                     R.id.edit ->{
 
-                        shareCount++
-
-
-                        if (shareCount >= 1) {
-// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
-                            if (mInterstitialAd != null) {
-                                mInterstitialAd?.show(con as Activity)
-                            } else {
-                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
-                            }
-                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
-
-
-                        }
+//                        shareCount++
+//
+//
+//                        if (shareCount >= 1) {
+//// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+//                            if (mInterstitialAd != null) {
+//                                mInterstitialAd?.show(con as Activity)
+//                            } else {
+//                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+//                            }
+//                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+//
+//
+//                        }
                         Toast.makeText(con, "edit", Toast.LENGTH_SHORT).show()
 
                         val direction = NewMsgsFragmentDirections.actionSecondFragmentToEditFragment(
@@ -234,7 +234,7 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         Log.e("tessst","notifyyyy")
         holder.bind(position)
-        InterstitialAd_fun ()
+//        InterstitialAd_fun ()
 //        if ((position + 1) % adCount == 0)
 //        {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان
 //            Log.d("AD_TAG", "Loading Ad at position $position")

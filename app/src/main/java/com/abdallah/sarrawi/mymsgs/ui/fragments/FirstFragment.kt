@@ -106,7 +106,7 @@ class FirstFragment : Fragment() {
 //            val direction = FirstFragmentDirections.actionFirsFragmentToSecondFragment(id, MsgTypes)
 //            InterstitialAd_fun()
             clickCount++
-            if (clickCount >= 4) {
+            if (clickCount >= 2) {
 // بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
                 if (mInterstitialAd != null) {
                     mInterstitialAd?.show(requireActivity())

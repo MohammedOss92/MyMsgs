@@ -56,20 +56,20 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
                 when(it.itemId){
                     R.id.share ->{
 
-                        shareCount++
-
-
-                        if (shareCount >= 1) {
-// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
-                            if (mInterstitialAd != null) {
-                                mInterstitialAd?.show(con as Activity)
-                            } else {
-                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
-                            }
-                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
-
-
-                        }
+//                        shareCount++
+//
+//
+//                        if (shareCount >= 1) {
+//// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+//                            if (mInterstitialAd != null) {
+//                                mInterstitialAd?.show(con as Activity)
+//                            } else {
+//                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+//                            }
+//                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+//
+//
+//                        }
                         val v = LayoutInflater.from(con).inflate(R.layout.msgs_design,null)
                         val tvMsg = v.findViewById<TextView>(R.id.tvMsg_m)
 
@@ -78,20 +78,20 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
                         true
                     }
                     R.id.copy ->{
-                        shareCount++
-
-
-                        if (shareCount >= 1) {
-// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
-                            if (mInterstitialAd != null) {
-                                mInterstitialAd?.show(con as Activity)
-                            } else {
-                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
-                            }
-                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
-
-
-                        }
+//                        shareCount++
+//
+//
+//                        if (shareCount >= 1) {
+//// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+//                            if (mInterstitialAd != null) {
+//                                mInterstitialAd?.show(con as Activity)
+//                            } else {
+//                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+//                            }
+//                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+//
+//
+//                        }
                         val v = LayoutInflater.from(con).inflate(R.layout.msgs_design,null)
                         val tvMsg = v.findViewById<TextView>(R.id.tvMsg_m)
 
@@ -117,17 +117,17 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
                         shareCount++
 
 
-                        if (shareCount >= 1) {
-// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
-                            if (mInterstitialAd != null) {
-                                mInterstitialAd?.show(con as Activity)
-                            } else {
-                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
-                            }
-                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
-
-
-                        }
+//                        if (shareCount >= 1) {
+//// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+//                            if (mInterstitialAd != null) {
+//                                mInterstitialAd?.show(con as Activity)
+//                            } else {
+//                                Log.d("TAG", "The interstitial ad wasn't ready yet.")
+//                            }
+//                            shareCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+//
+//
+//                        }
                         val dir = FavoriteFragmentDirections.actionFavoriteFragmentToEditFragment(
                             binding.tvMsgM.text.toString()
                         )
@@ -181,7 +181,7 @@ class Msgs_Fav_Adapter(val con:Context,var frag:Fragment) : RecyclerView.Adapter
             }
 
         }
-        InterstitialAd_fun ()
+//        InterstitialAd_fun ()
 
 //        if ((position + 1) % adCount == 0)
 //        {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان
