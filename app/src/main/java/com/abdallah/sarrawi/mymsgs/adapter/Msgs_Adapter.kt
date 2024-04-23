@@ -85,6 +85,7 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
 
             val popupMenu = PopupMenu(con,view)
             popupMenu.inflate(R.menu.menu_msg)
+
             popupMenu.setOnMenuItemClickListener {
                 when(it.itemId){
                     R.id.share ->{
@@ -234,6 +235,7 @@ class Msgs_Adapter(val con:Context,val frag:Fragment /*,var callBack: CallBack*/
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         Log.e("tessst","notifyyyy")
         holder.bind(position)
+
 //        InterstitialAd_fun ()
 //        if ((position + 1) % adCount == 0)
 //        {  // تحقق مما إذا كانت هذه العنصر هي عنصر الإعلان

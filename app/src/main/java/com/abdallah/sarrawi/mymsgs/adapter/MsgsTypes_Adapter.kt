@@ -1,8 +1,11 @@
 package com.abdallah.sarrawi.mymsgs.adapter
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +13,7 @@ import com.abdallah.sarrawi.mymsgs.R
 import com.abdallah.sarrawi.mymsgs.databinding.MsgstypeslayoutBinding
 import com.abdallah.sarrawi.mymsgs.models.MsgsTypeWithCount
 
-class MsgsTypes_Adapter() : RecyclerView.Adapter<MsgsTypes_Adapter.MyViewHolder>() {
+class MsgsTypes_Adapter(val con:Context) : RecyclerView.Adapter<MsgsTypes_Adapter.MyViewHolder>() {
 //    var isdark = false
 //    constructor(isdark:Boolean) : this() {
 //        this.isdark=isdark
@@ -76,6 +79,7 @@ class MsgsTypes_Adapter() : RecyclerView.Adapter<MsgsTypes_Adapter.MyViewHolder>
 
 
         }
+
 
     }
 

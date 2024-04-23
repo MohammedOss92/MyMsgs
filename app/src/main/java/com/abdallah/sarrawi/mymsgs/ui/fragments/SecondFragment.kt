@@ -42,8 +42,8 @@ class SecondFragment : Fragment() , CallBack {
     private val binding get() = _binding
     private var argsId = -1
     private var MsgTypes_name = ""
+    var clickCount = 0
     var mInterstitialAd: InterstitialAd? = null
-
 //    lateinit var  msgsAdapter :Msgs_Adapter
     private val msgsAdapter by lazy { Msgs_Adapter(requireContext(),this) }
     private val retrofitService = ApiService.provideRetrofitInstance()
@@ -93,6 +93,17 @@ class SecondFragment : Fragment() , CallBack {
     private fun adapterOnClick(){
         val currentTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
         msgsAdapter.onItemClick = { it: MsgModelWithTitle, i: Int ->
+            clickCount++
+            if (clickCount >= 2) {
+// بمجرد أن يصل clickCount إلى 4، اعرض الإعلان
+                if (mInterstitialAd != null) {
+                    mInterstitialAd?.show(requireActivity())
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.")
+                }
+                clickCount = 0 // اعيد قيمة المتغير clickCount إلى الصفر بعد عرض الإعلان
+
+            }
             val fav= FavoriteModel(it.msgModel!!.id,it.msgModel!!.MessageName,it.typeTitle,it.msgModel!!.new_msgs,it.msgModel!!.ID_Type_id)
             fav.createdAt=currentTime
             // check if item is favorite or not

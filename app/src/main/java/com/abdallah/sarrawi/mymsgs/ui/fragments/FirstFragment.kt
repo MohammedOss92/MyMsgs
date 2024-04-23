@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.MenuHost
@@ -50,7 +51,7 @@ class FirstFragment : Fragment() {
     var mInterstitialAd: InterstitialAd? = null
 
 
-    private val msgstypesAdapter by lazy { MsgsTypes_Adapter(/*isDark*/) }
+    private val msgstypesAdapter by lazy { MsgsTypes_Adapter(requireContext()/*isDark*/) }
     private val retrofitService = ApiService.provideRetrofitInstance()
     private val mainRepository2 by lazy {
         MsgsRepo(
@@ -82,6 +83,7 @@ class FirstFragment : Fragment() {
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         Log.e("tessst", "entred")
         (activity as MainActivity).fragment = 1
+
 
 
         return binding.root
