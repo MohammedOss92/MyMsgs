@@ -49,7 +49,7 @@ class FirstFragment : Fragment() {
 
     var clickCount = 0
     var mInterstitialAd: InterstitialAd? = null
-
+//ضض
 
     private val msgstypesAdapter by lazy { MsgsTypes_Adapter(requireContext()/*isDark*/) }
     private val retrofitService = ApiService.provideRetrofitInstance()
