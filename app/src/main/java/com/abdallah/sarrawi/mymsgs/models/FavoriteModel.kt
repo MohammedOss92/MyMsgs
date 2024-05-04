@@ -30,8 +30,9 @@ data class FavoriteModel(
 
     @ColumnInfo("ID_Type_id", index = true)
     @SerializedName("ID_Type_id")
-    var ID_Type_id : Int,
-    @ColumnInfo(name = "createdAt")
-    var createdAt: String? = null
+    var ID_Type_id : Int
+//
+//    @ColumnInfo(name = "createdAt")
+//    var createdAt: String? = null
 
 )

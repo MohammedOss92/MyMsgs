@@ -18,7 +18,7 @@ class LocaleSource(context: Context) {
 
 
     init {
-        val dataBase = MsgsDatabase.getInstance(context.applicationContext)
+        val dataBase = PostDatabase.getInstance(context.applicationContext)
         TypesDao = dataBase.typesDao()
         Msgs_Dao = dataBase.msgsDao()
         FavoriteDao = dataBase.favoriteDao()

@@ -91,7 +91,7 @@ class SecondFragment : Fragment() , CallBack {
     }
 
     private fun adapterOnClick(){
-        val currentTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+//        val currentTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
         msgsAdapter.onItemClick = { it: MsgModelWithTitle, i: Int ->
             clickCount++
             if (clickCount >= 2) {
@@ -105,7 +105,7 @@ class SecondFragment : Fragment() , CallBack {
 
             }
             val fav= FavoriteModel(it.msgModel!!.id,it.msgModel!!.MessageName,it.typeTitle,it.msgModel!!.new_msgs,it.msgModel!!.ID_Type_id)
-            fav.createdAt=currentTime
+//            fav.createdAt=currentTime
             // check if item is favorite or not
             if (it.msgModel!!.is_fav){
                 viewModel.update_fav(it.msgModel!!.id,false) // update favorite item state
