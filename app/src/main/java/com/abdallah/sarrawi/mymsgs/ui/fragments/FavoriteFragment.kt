@@ -108,13 +108,17 @@ class FavoriteFragment : Fragment() {
     @SuppressLint("SuspiciousIndentation")
     private fun setUpRv() = viewModel.viewModelScope.launch {
         viewModel.getFav().observe(viewLifecycleOwner) { listShows ->
-            if (listShows.isEmpty()) {
-                showSnackbar("لا يوجد بيانات")
+            val updatedListShows = if (listShows.isEmpty()) {
+                // إنشاء قائمة جديدة تحتوي على العنصر المطلوب في حالة القائمة الفارغة
+                listShows + FavoriteModel(0, "مرحبا", "مسجات اسلامية", 0, 1)
+            } else {
+                // تحديث القائمة مباشرة في حالة عدم فراغها
+                listShows.filter { it.MessageName != "مرحبا" }
             }
 
             msgfavadapter.stateRestorationPolicy =
                 RecyclerView.Adapter.StateRestorationPolicy.ALLOW
-            msgfavadapter.msgs_fav_list = listShows
+            msgfavadapter.msgs_fav_list = updatedListShows
             if (binding.rcMsgFav.adapter == null) {
                 binding.rcMsgFav.layoutManager = LinearLayoutManager(requireContext())
                 binding.rcMsgFav.adapter = msgfavadapter
@@ -124,6 +128,7 @@ class FavoriteFragment : Fragment() {
             Log.e("tessst", "enter111")
         }
     }
+
 
 
 
